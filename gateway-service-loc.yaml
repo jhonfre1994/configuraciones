@@ -17,7 +17,7 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: dummie-service
+        - id: dumservice
           uri: lb://dummie-service
           predicates:
             - Path=/dummieservice/**
