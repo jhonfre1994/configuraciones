@@ -3,35 +3,29 @@ server:
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka
-
-  endpoints:
-    web:
-      exposure:
-        include:
-          - mappings
-          - env
-          - health
-          - info
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
 
 spring:
-  application:
-    name: gateway-service
-  main:
-    web-application-type: reactive
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
-        - id: dummie
-          uri: lb://DUMMIE-SERVICE
+        - id: dummie-service
+          uri: lb://dummie-service
           predicates:
-            - Path=/api/dummieservice/*
-        - id: consumerModule
-          uri: lb://SECOND-SERVICE
+            - Path=/dummie/**
+        - id: car-service
+          uri: lb://car-service
           predicates:
-            - Path=/consumer/**
-
-logging:
-  level:
-    org.springframework: TRACE
+            - Path=/car/**
+        - id: bike-service
+          uri: lb://bike-service
+          predicates:
+            - Path=/bike/**
