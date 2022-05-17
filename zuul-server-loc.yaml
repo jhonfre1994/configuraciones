@@ -1,0 +1,37 @@
+server:
+  port: 8090
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+  endpoints:
+    web:
+      exposure:
+        include:
+          - mappings
+          - env
+          - health
+          - info
+
+spring:
+  application:
+    name: gateway-service
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: dummie
+          uri: lb://DUMMIE-SERVICE
+          predicates:
+            - Path=/api/dummieservice/*
+        - id: consumerModule
+          uri: lb://SECOND-SERVICE
+          predicates:
+            - Path=/consumer/**
+
+logging:
+  level:
+    org.springframework: TRACE
