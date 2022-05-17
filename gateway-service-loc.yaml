@@ -24,3 +24,7 @@ spring:
           uri: lb://dummie-service/
           predicates:
             - Path=/**
+        - id: car-service
+          uri: lb://car-service
+          predicates:
+            - Path=/**
