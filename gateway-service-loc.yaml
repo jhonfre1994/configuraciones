@@ -20,4 +20,4 @@ spring:
         - id: dumservice
           uri: lb://dummie-service/dumservice
           predicates:
-            - Path=/dummieservice/**
+            - Path=/dumservice/**
