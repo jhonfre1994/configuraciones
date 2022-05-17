@@ -21,6 +21,3 @@ spring:
           uri: lb://dummie-service
           predicates:
             - Path=/dummieservice/**
-          filters:
-            - StripPrefix=1
-            - PrefixPath=/public
