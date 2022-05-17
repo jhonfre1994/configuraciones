@@ -12,9 +12,13 @@ eureka:
 
 spring:
   cloud:
+    discovery:
+      enabled: true
     gateway:
       discovery:
+        locator:
           enabled: true
+          lower-case-service-id: true
       routes:
         - id: dumservice
           uri: lb://dummie-service/
