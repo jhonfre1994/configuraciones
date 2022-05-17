@@ -1,0 +1,17 @@
+server.port=8090
+
+spring:
+   cloud:
+      gateway:
+      discovery:
+         locator:
+            enabled: true
+      routes:
+         - id: dummie-service
+            uri: lb://dummie-service
+            predicates:
+            - Path=/dimmieservice/**
+         - id: restaurants
+            uri: lb://restaurant-service
+            predicates:
+            - Path=/restaurant/**
