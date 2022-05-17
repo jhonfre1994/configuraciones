@@ -14,7 +14,6 @@ spring:
   cloud:
     gateway:
       discovery:
-        locator:
           enabled: true
       routes:
         - id: dumservice
